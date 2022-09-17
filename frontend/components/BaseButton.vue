@@ -1,8 +1,5 @@
 <script setup>
-import { computed } from "vue";
-import { RouterLink } from "vue-router";
-import { getButtonColor } from "@/colors.js";
-import BaseIcon from "@/components/BaseIcon.vue";
+import { getButtonColor } from "@/configs/colors";
 
 const props = defineProps({
   label: {
@@ -54,7 +51,7 @@ const is = computed(() => {
   }
 
   if (props.to) {
-    return RouterLink;
+    return navigateTo(props.to);
   }
 
   if (props.href) {

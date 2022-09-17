@@ -1,17 +1,27 @@
-import {defineNuxtConfig} from 'nuxt'
-
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    buildModules: [
+    modules: [
         '@pinia/nuxt',
+        '@nuxtjs/axios'
     ],
-    postcss: {
-        plugins: {
-            tailwindcss: {},
-            autoprefixer: {},
-        },
+    axios: {
+        baseURL: 'http://localhost:8000'
     },
-    css: [
-        '@/assets/css/main.css',
-    ]
+    plugins: [
+        '~/plugins/axios'
+    ],
+    css: ["assets/css/main.css"],
+    meta: {
+        title: "Nuxt3 - Admin Panel"
+    },
+    build: {
+        postcss: {
+            postcssOptions: {
+                plugins: {
+                    tailwindcss: {},
+                    autoprefixer: {},
+                },
+            }
+        },
+    }
 })

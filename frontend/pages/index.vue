@@ -1,8 +1,5 @@
 <script setup>
-import {reactive} from "vue";
-import {useRouter} from "vue-router";
-import {mdiAccount, mdiAsterisk} from "@mdi/js";
-import LayoutGuest from "@/layouts/LayoutGuest.vue";
+import { mdiAccount, mdiAsterisk } from "@mdi/js";
 
 const form = reactive({
   login: "john.doe",
@@ -10,52 +7,47 @@ const form = reactive({
   remember: true,
 });
 
-const router = useRouter();
-
 const submit = () => {
-  router.push("/dashboard");
+  navigateTo("/dashboard");
 };
 </script>
-
+    
 <template>
   <div>
     <NuxtLayout>
-      <SectionFullScreen v-slot="{ cardClass }" bg="purplePink">
-        <CardBox :class="cardClass" is-form @submit.prevent="submit">
+      <div class="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
+        <CardBox is-form @submit.prevent="submit">
           <FormField label="Login" help="Please enter your login">
             <FormControl
-                v-model="form.login"
-                :icon="mdiAccount"
-                name="login"
-                autocomplete="username"
+              v-model="form.login"
+              name="login"
+              autocomplete="username"
             />
           </FormField>
 
           <FormField label="Password" help="Please enter your password">
             <FormControl
-                v-model="form.pass"
-                :icon="mdiAsterisk"
-                type="password"
-                name="password"
-                autocomplete="current-password"
+              v-model="form.pass"
+              type="password"
+              name="password"
+              autocomplete="current-password"
             />
           </FormField>
 
           <FormCheckRadio
-              v-model="form.remember"
-              name="remember"
-              label="Remember"
-              :input-value="true"
+            v-model="form.remember"
+            name="remember"
+            label="Remember"
+            :input-value="true"
           />
 
-          <template #footer>
-            <BaseButtons>
-              <BaseButton type="submit" color="info" label="Login"/>
-              <BaseButton to="/dashboard" color="info" outline label="Back"/>
-            </BaseButtons>
-          </template>
+          <BaseButtons>
+            <BaseButton type="submit" color="info" label="Login" />
+            <BaseButton to="/dashboard" color="info" outline label="Back" />
+          </BaseButtons>
         </CardBox>
-      </SectionFullScreen>
+      </div>
     </NuxtLayout>
   </div>
 </template>
+    
